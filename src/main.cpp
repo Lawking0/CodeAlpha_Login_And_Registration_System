@@ -1,8 +1,6 @@
                     #include <iostream>
                     #include <string>
                     #include <fstream>
-                    #include <vector>
-                    #include <algorithm>
 
                     using namespace std;
                     //varables 
@@ -10,7 +8,7 @@
                         // string username2;
                         string password;
 
-                    // tasks
+                    // Registeration button
                         void RegisterUser( ){
                         cout << "---------Registration---------"<< endl;
 
@@ -74,7 +72,39 @@
 
                         }
 
-                    int main() {
+                    // LOgin in button
+                    void Login (){
+                        cout <<"------- Login ---------"<<endl;
+
+                        //entering the username
+                        cout<<"Username: "<<username<<endl;
+                        getline(cin,username);
+
+                        
+                        //precaution for the username
+                        while (username.empty())
+                        {
+                            cout << "You didn't enter your username...try again"<<endl;
+                            cout<<"username: " << username <<endl;
+                            getline(cin,username);
+                        }
+                        
+                        
+
+
+
+                        // //entering the password
+                        // cout <<"Password: "<<password<<endl;
+                        // getline(cin,password);
+
+
+                        // //precaution for the password
+
+                    }
+
+
+
+                        int main() {
 
                         int option;
 
@@ -86,10 +116,21 @@
                         cout << " select the number:  ";
                         cin>> option;
                         cin.ignore();
-
+                    
+                        // For the register 1 button
                         if (option == 1){
                             RegisterUser();
+                            main();
                         } 
+
+                        // For the login 2 button
+                        if (option == 2){
+                            Login();
+                            
+                        }
+
+                        // For the Exist 3 button
+
                         
                         return 0;
                     }
