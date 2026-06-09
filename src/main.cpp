@@ -1,136 +1,174 @@
-                    #include <iostream>
-                    #include <string>
-                    #include <fstream>
+#include <iostream>
+#include <string>
+#include <fstream>
 
-                    using namespace std;
-                    //varables 
-                        string username;
-                        // string username2;
-                        string password;
+using namespace std;
+//varables 
+string username;
+// string username2;
+string password;
 
-                    // Registeration button
-                        void RegisterUser( ){
-                        cout << "---------Registration---------"<< endl;
+// REGISTERATION IN BUTTON
+void RegisterUser();
 
-                        // entering the username
-                            cout << "Enter your username: ";
-                            getline(cin,username);
+// LOGIN IN BUTTON
+void Login ();
 
-                            // precautions for the username
-                                while (username == ""){
-                                cout << "You didn't enter your username... try again"<< endl;
-                                cout << "Enter your username: ";
-                                getline(cin,username);
-                                }
-
-                            // cout << "confirm your username: ";
-                            // cin>>username2;
-
-                            // entering the password
-                            cout << "Enter your Password: ";
-                            getline(cin,password);
-                            
-                            // precaution for the password
-                            while (password == "")
-                            {
-                                cout<< "You didn't enter your password... Try again"<< endl;
-                                cout<<"Enter your Password";
-                                getline(cin,password);
-                            }
-
-                            // saving the user registration in a file
-                            fstream myFile;
-                        myFile.open("RegisterUser.txt",ios::app | ios::in | ios::out);
-                        if (myFile.is_open()){
-                            myFile<<"username: " <<username<<endl;
-                            myFile<<"Password: "<< password<<endl;
-                            myFile.close();
-                        }
-                        
-                         cout << "Registeration successful!"<< endl;
-
-                        //  ifstream outFile;
-                        //  outFile.open("RegisterUser.txt");
-                        //  if (outFile.is_open())
-                        //  {
-                        
-                        //     while ()
-                        //     {
-                        //         cout<<"red confirmed"<<endl;
-                               
-                        //     }
-                        //     outFile.close();
-                        //  } else {
-                        //     cout <<"Error: couldn't open/read the file"<<endl;
-                        //  }
+int main() {
+    cout << "-------------Login---And---Registration---System------"<<endl;
+int option;
 
 
-                            // if (username != username2){
-                            //     cout<<" Your username didn't match." << endl;
-                            // }
+do {
+
+cout << "1. Register" << endl;
+cout << "2. Login" << endl;
+cout << "3. Exist"<< endl;
+
+cout << " select the number:  ";
+cin>> option;
+cin.ignore(); 
 
 
-                        }
+// For the register 1 button
+if (option == 1){
+    RegisterUser();
+    
+} 
 
-                    // LOgin in button
-                    void Login (){
-                        cout <<"------- Login ---------"<<endl;
-
-                        //entering the username
-                        cout<<"Username: "<<username<<endl;
-                        getline(cin,username);
-
-                        
-                        //precaution for the username
-                        while (username.empty())
-                        {
-                            cout << "You didn't enter your username...try again"<<endl;
-                            cout<<"username: " << username <<endl;
-                            getline(cin,username);
-                        }
-                        
-                        
+// For the login 2 button
+if (option == 2){
+    Login();
+    
+}
 
 
 
-                        // //entering the password
-                        // cout <<"Password: "<<password<<endl;
-                        // getline(cin,password);
 
-
-                        // //precaution for the password
-
-                    }
+// For the Exist 3 button
+} while (option !=3  );
 
 
 
-                        int main() {
 
-                        int option;
+return 0;
+}
 
-                        cout << "-------------Login---And---Registration---System------"<<endl;
-                        cout << "1. Register" << endl;
-                        cout << "2. Login" << endl;
-                        cout << "3. Exist"<< endl;
+// functions building block 
+void RegisterUser(){
+cout << "---------Registration---------"<< endl;
 
-                        cout << " select the number:  ";
-                        cin>> option;
-                        cin.ignore();
-                    
-                        // For the register 1 button
-                        if (option == 1){
-                            RegisterUser();
-                            main();
-                        } 
+// entering the username
+    cout << "Enter your username: ";
+    getline(cin,username);
 
-                        // For the login 2 button
-                        if (option == 2){
-                            Login();
-                            
-                        }
+    // precautions for the username
+        while (username == ""){
+        cout << "You didn't enter your username... try again"<< endl;
+        cout << "Enter your username: ";
+        getline(cin,username);
+        }
 
-                        // For the Exist 3 button
+    // entering the password
+    cout << "Enter your Password: ";
+    getline(cin,password);
+    
+    // precaution for the password
+    while (password == "") 
+     {  cout<< "You didn't enter your password... Try again"<< endl;
+        cout<<"Enter your Password";
+        getline(cin,password);
+    }
 
-                        
-                        return 0;
-                    }
+    // saving the user registration in a file
+    fstream myFile;
+myFile.open("RegisterUser.txt",ios::app | ios::in | ios::out);
+if (myFile.is_open()){
+    myFile<<"username: " <<username<<endl;
+    myFile<<"Password: "<< password<<endl;
+    myFile.close();
+}
+
+cout << "Registeration successful!"<< endl;
+
+}
+
+void Login (){
+cout <<"------- Login ---------"<<endl;
+do {
+
+//entering the username and password
+cout<<"Username: ";
+getline(cin,username); 
+
+cout<<"Password: ";
+getline(cin,password); 
+
+// Precautions for the login 
+if (username.empty() || password.empty()){ // 
+    cout << " username or password is empty...try again"<<endl;
+}
+} while (username.empty () || password.empty());
+
+
+// Open the register file
+fstream readFile;
+readFile.open("RegisterUser.txt",ios::in);
+
+string line;
+string compare_name;
+string compare_password;
+
+// concatnate the user input to the register file
+compare_name = "username: " + username;
+compare_password = "Password: " + password;
+
+
+// Precaution for the read file
+if (!readFile.is_open()){
+    cout << " Error: Could not open file"<< endl;
+    return;
+}
+
+// read each line in the file
+while (getline(readFile,line)){
+    
+    // compare the user input name and the name in the database
+    if (line == compare_name){
+ 
+        // this remove the name in the line to put the password
+    if (getline(readFile,line)){
+
+        // compare the input pass and pass in the database
+        if (line == compare_password) { 
+            cout << endl << endl;
+            cout<<" Login Successfully "<< endl;
+            cout << endl << endl;
+            readFile.close();
+            break;
+
+    } 
+
+        }
+    } 
+    
+
+} readFile.close();
+
+// display the warning if login doesn't matched
+    if (line != compare_password ){
+        // compare the input pass and pass in the database
+        cout <<endl <<endl;
+            cout<<"Error: Incorrect username or password "<< endl;
+            cout << endl << endl;
+       
+
+        
+    } 
+
+
+
+
+
+} 
+
