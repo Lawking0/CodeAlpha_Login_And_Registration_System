@@ -3,8 +3,10 @@
 #include <fstream>
 
 using namespace std;
+
 //varables 
 string username;
+
 // string username2;
 string password;
 
@@ -15,12 +17,11 @@ void RegisterUser();
 void Login ();
 
 int main() {
-    cout << "-------------Login---And---Registration---System------"<<endl;
+    cout << "----------Login---And---Registration---System------"<<endl;
 int option;
 
 
 do {
-
 cout << "1. Register" << endl;
 cout << "2. Login" << endl;
 cout << "3. Exist"<< endl;
@@ -42,14 +43,8 @@ if (option == 2){
     
 }
 
-
-
-
 // For the Exist 3 button
 } while (option !=3  );
-
-
-
 
 return 0;
 }
