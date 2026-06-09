@@ -88,9 +88,9 @@ if (myFile.is_open()){
     myFile<<"Password: "<< password<<endl;
     myFile.close();
 }
-
+cout << endl <<endl;
 cout << "Registeration successful!"<< endl;
-
+cout <<endl << endl;
 }
 
 void Login (){
